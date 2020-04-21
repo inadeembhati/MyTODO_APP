@@ -13,8 +13,15 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="checkBoxTheme">
+        <item name="color">@color/colorAccent</item>
+        <item name="android:textAlignment">textStart</item>
+        <item name="borderWidth">1dp</item>
+    </style>
 
 </resources>

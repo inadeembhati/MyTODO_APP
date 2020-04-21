@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
         viewModel.taskData.observe(this, Observer {
             for (task in it) {
-                Log.i(LOG_TAG, "${task.taskName}")
+             //   Log.i(LOG_TAG, "${task.taskName}")
             }
         })
 
