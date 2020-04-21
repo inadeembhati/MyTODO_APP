@@ -1,6 +1,8 @@
 package com.nadeem.mytodo_app.utilities
 
+import com.squareup.moshi.Json
+
 data class DataTask(
-    val task:String,
+    val taskName:String,
     val status: String
 )
