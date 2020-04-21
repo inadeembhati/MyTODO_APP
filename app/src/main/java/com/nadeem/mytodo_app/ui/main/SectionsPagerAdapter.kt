@@ -5,6 +5,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.nadeem.mytodo_app.R
+import com.nadeem.mytodo_app.ui.Fragments.All_Fragment
+import com.nadeem.mytodo_app.ui.Fragments.Done_Fragment
+import com.nadeem.mytodo_app.ui.Fragments.TodoFragment
 
 private val TAB_TITLES = arrayOf(
         R.string.tab_text_TODO,
@@ -23,7 +26,12 @@ class SectionsPagerAdapter(private val context: Context, fm: FragmentManager)
     override fun getItem(position: Int): Fragment {
         // getItem is called to instantiate the fragment for the given page.
         // Return a PlaceholderFragment (defined as a static inner class below).
-        return PlaceholderFragment.newInstance(position + 1)
+      return  when(position){
+            0-> TodoFragment()
+            1-> Done_Fragment()
+            2->All_Fragment()
+            else->TodoFragment()
+        }
     }
 
     override fun getPageTitle(position: Int): CharSequence? {
