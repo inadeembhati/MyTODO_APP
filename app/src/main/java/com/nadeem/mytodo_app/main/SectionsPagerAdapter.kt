@@ -1,13 +1,13 @@
-package com.nadeem.mytodo_app.ui.main
+package com.nadeem.mytodo_app.main
 
 import android.content.Context
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.nadeem.mytodo_app.R
-import com.nadeem.mytodo_app.ui.Fragments.All_Fragment
-import com.nadeem.mytodo_app.ui.Fragments.Done_Fragment
-import com.nadeem.mytodo_app.ui.Fragments.TodoFragment
+import com.nadeem.mytodo_app.Fragments.All_Fragment
+import com.nadeem.mytodo_app.Fragments.Done_Fragment
+import com.nadeem.mytodo_app.Fragments.TodoFragment
 
 private val TAB_TITLES = arrayOf(
         R.string.tab_text_TODO,

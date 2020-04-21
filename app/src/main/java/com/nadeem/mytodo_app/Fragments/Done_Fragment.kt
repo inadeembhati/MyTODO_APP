@@ -1,4 +1,4 @@
-package com.nadeem.mytodo_app.ui.Fragments
+package com.nadeem.mytodo_app.Fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -15,10 +15,10 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [All_Fragment.newInstance] factory method to
+ * Use the [Done_Fragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class All_Fragment : Fragment() {
+class Done_Fragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -36,7 +36,7 @@ class All_Fragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_all_, container, false)
+        return inflater.inflate(R.layout.fragment_done_, container, false)
     }
 
     companion object {
@@ -46,12 +46,12 @@ class All_Fragment : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment All_Fragment.
+         * @return A new instance of fragment Done_Fragment.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            All_Fragment().apply {
+            Done_Fragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)
