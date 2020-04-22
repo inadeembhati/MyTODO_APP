@@ -19,7 +19,6 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:spanCount="1"/>
 <!--</androidx.swiperefreshlayout.widget.SwipeRefreshLayout> -->

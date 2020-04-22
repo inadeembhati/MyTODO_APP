@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
+import android.widget.CheckedTextView
 import androidx.recyclerview.widget.RecyclerView
 import com.nadeem.mytodo_app.R
 import com.nadeem.mytodo_app.utilities.DataTask
@@ -15,7 +16,9 @@ import kotlinx.android.synthetic.main.task_item_grid.view.*
 class MainReclycleAdapter(val context: Context, val dataTasks: List<DataTask>) :
     RecyclerView.Adapter<MainReclycleAdapter.ViewHolder>() {
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    val taskCheckBox = itemView.findViewById<CheckBox>(R.id.checkBox)
+  //  val taskCheckBox = itemView.findViewById<CheckBox>(R.id.checkBox)
+
+     val textChackedView : CheckedTextView = itemView.findViewById(R.id.checkedTextView)
     }
 
     override fun getItemCount() = dataTasks.size
@@ -28,14 +31,21 @@ class MainReclycleAdapter(val context: Context, val dataTasks: List<DataTask>) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val dataTask  = dataTasks[position]
-        with(holder){
+        /*with(holder){
                 taskCheckBox?.let{
                     it.text = dataTask.taskName
                     it.isChecked = dataTask.status == "Done"
+
                 it.setOnClickListener{checkBoxChanged(text = dataTask.taskName)}
                 }
+        }*/
+        with(holder){
+            textChackedView?.let{
+                it.text = dataTask.taskName
+                it.isChecked = dataTask.status == "Done"
 
-
+            //    it.setOnClickListener{checkBoxChanged(text = dataTask.taskName)}
+            }
         }
     }
 
