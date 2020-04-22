@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.androiddata.ui.main.MainViewModel
 
 import com.nadeem.mytodo_app.R
@@ -32,6 +33,9 @@ class TodoFragment : Fragment() {
     private var param2: String? = "String2"
     private lateinit var viewModel: MainViewModel
     private  lateinit var reclyclerView : RecyclerView
+
+    //private  lateinit var swipeLayout : SwipeRefreshLayout
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -48,9 +52,13 @@ class TodoFragment : Fragment() {
         reclyclerView = view.findViewById(R.id.reclyclerView)
         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
         viewModel.taskData.observe(this, Observer {
-
+      /// swipeLayout = view.findViewById(R.id.swipeLayoutTodo)
+         //   swipeLayout.setOnRefreshListener {
+           //    viewModel.refreshData()
+            //}
             val adapter = MainReclycleAdapter(requireContext(), it)
             reclyclerView.adapter = adapter
+          //  swipeLayout.isRefreshing = false
         })
 
         return  view
