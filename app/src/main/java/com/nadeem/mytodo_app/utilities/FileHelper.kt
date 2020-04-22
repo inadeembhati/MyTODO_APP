@@ -9,7 +9,7 @@ import java.nio.charset.Charset
 class FileHelper {
 
     companion object{
-        fun getTextFromResource(context: Context,resourceID :Int) : String? {
+        fun getTextFromResource(context: Context) : String? {
 
             /*return context.resources.openRawResource(resourceID).use {
                 it.bufferedReader().use {

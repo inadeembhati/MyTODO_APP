@@ -2,6 +2,7 @@
 
 package com.nadeem.mytodo_app
 
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -9,12 +10,14 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import androidx.viewpager.widget.ViewPager
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.example.androiddata.ui.main.MainViewModel
 import com.nadeem.mytodo_app.main.SectionsPagerAdapter
 import com.nadeem.mytodo_app.utilities.LOG_TAG
+import java.util.jar.Manifest
 
 class MainActivity : AppCompatActivity() {
 
@@ -23,7 +26,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         //   var mviewModel= MainViewModel(application)
-
         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
         viewModel.taskData.observe(this, Observer {
             for (task in it) {

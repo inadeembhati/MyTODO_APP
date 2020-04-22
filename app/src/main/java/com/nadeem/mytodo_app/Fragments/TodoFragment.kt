@@ -1,11 +1,15 @@
 package com.nadeem.mytodo_app.Fragments
 
+import android.Manifest
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.RecyclerView
@@ -17,37 +21,32 @@ import com.nadeem.mytodo_app.main.MainReclycleAdapter
 import com.nadeem.mytodo_app.utilities.LOG_TAG
 import kotlinx.android.synthetic.main.fragment_todo.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [TodoFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class TodoFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = "String1"
-    private var param2: String? = "String2"
     private lateinit var viewModel: MainViewModel
     private  lateinit var reclyclerView : RecyclerView
-
+    //private var PERMISSION_REQUEST_CODE = 1001
     //private  lateinit var swipeLayout : SwipeRefreshLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+       /* if(ContextCompat.checkSelfPermission(
+                requireContext(),Manifest.permission.WRITE_EXTERNAL_STORAGE)
+            == PackageManager.PERMISSION_GRANTED
+            ){
+
+        }else{
+            requestPermissions(arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),PERMISSION_REQUEST_CODE)
+        }
+*/
         val view =  inflater.inflate(R.layout.fragment_todo, container, false)
         reclyclerView = view.findViewById(R.id.reclyclerView)
         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
@@ -64,13 +63,19 @@ class TodoFragment : Fragment() {
         return  view
     }
 
-    companion object {
-        fun newInstance(param1: String, param2: String) =
-            TodoFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
+  /*  override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+       if(requestCode == PERMISSION_REQUEST_CODE){
+           if(grantResults.isNotEmpty() && grantResults[0]== PackageManager.PERMISSION_GRANTED){
+
+           }else{
+               Toast.makeText(requireContext(),"Denied",Toast.LENGTH_LONG)
+                   .show()
+           }
+       }
+    }*/
+
 }

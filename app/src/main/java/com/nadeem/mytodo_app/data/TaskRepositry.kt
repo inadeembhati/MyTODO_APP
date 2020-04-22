@@ -29,7 +29,7 @@ class TaskRepositry(val app : Application) {
         refreshData()
     }
     fun getTaskData () {
-        val text = FileHelper.getTextFromResource(app, R.raw.todo)
+        val text = FileHelper.getTextFromResource(app)
         val moshi = Moshi.Builder()
             .build()
         val adapater : JsonAdapter<List<DataTask>> = moshi.adapter(listType)
@@ -44,5 +44,6 @@ class TaskRepositry(val app : Application) {
         val json = adapater.toJson(dataTask)
         FileHelper.saveTextToFile(app,json)
     }
+
 
 }
