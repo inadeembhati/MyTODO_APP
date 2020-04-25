@@ -1,12 +1,16 @@
 package com.nadeem.mytodo_app.main
 
+import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.CheckBox
 import android.widget.CheckedTextView
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.nadeem.mytodo_app.R
 import com.nadeem.mytodo_app.utilities.DataTask
@@ -44,12 +48,22 @@ class MainReclycleAdapter(val context: Context, val dataTasks: List<DataTask>) :
                 it.text = dataTask.taskName
                 it.isChecked = dataTask.status == "Done"
 
-            //    it.setOnClickListener{checkBoxChanged(text = dataTask.taskName)}
             }
         }
     }
 
-    private fun checkBoxChanged(text: String) {
-    Log.i(LOG_TAG,text)
+    fun hideKeyboard(activity: Activity) {
+        val view = activity.currentFocus
+        val methodManager = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        assert(view != null)
+        methodManager.hideSoftInputFromWindow(view!!.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
     }
+
+    private fun showKeyboard(activity: Activity) {
+        val view = activity.currentFocus
+        val methodManager = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        assert(view != null)
+        methodManager.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT)
+    }
+
 }

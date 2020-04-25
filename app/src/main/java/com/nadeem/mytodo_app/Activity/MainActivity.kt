@@ -1,23 +1,19 @@
 @file:Suppress("DEPRECATION")
 
-package com.nadeem.mytodo_app
+package com.nadeem.mytodo_app.Activity
 
-import android.content.pm.PackageManager
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import androidx.viewpager.widget.ViewPager
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.example.androiddata.ui.main.MainViewModel
+import com.nadeem.mytodo_app.R
 import com.nadeem.mytodo_app.main.SectionsPagerAdapter
-import com.nadeem.mytodo_app.utilities.LOG_TAG
-import java.util.jar.Manifest
 
 class MainActivity : AppCompatActivity() {
 
@@ -39,11 +35,18 @@ class MainActivity : AppCompatActivity() {
         viewPager.adapter = sectionsPagerAdapter
         val tabs: TabLayout = findViewById(R.id.tabs)
         tabs.setupWithViewPager(viewPager)
-        val fab: FloatingActionButton = findViewById(R.id.fab)
 
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
+
+        val addTODO: FloatingActionButton = findViewById(R.id.addTDOD)
+        if(tabs.selectedTabPosition == 0){
+            addTODO.show()
+            addTODO.setOnClickListener { view ->
+            Snackbar.make(view, "Add Task ${tabs.selectedTabPosition}", Snackbar.LENGTH_LONG).show()
+        val intent = Intent(this, AddTask::class.java)
+                startActivity(intent)
+
         }
+        }
+
     }
 }
