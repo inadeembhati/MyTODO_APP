@@ -1,12 +1,12 @@
 package com.nadeem.mytodo_app.Activity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.nadeem.mytodo_app.R
 import android.util.DisplayMetrics
-import android.util.Log
 import com.google.android.material.snackbar.Snackbar
-import com.nadeem.mytodo_app.utilities.LOG_TAG
+import com.nadeem.mytodo_app.data.TaskRepositry
 import kotlinx.android.synthetic.main.activity_add_task.*
 
 class AddTask : AppCompatActivity() {
@@ -22,13 +22,16 @@ class AddTask : AppCompatActivity() {
 
         window.setLayout((width*.8).toInt(), (height*.6).toInt())
         btn_AddTodo.setOnClickListener{
-
-            var newTask =  txtAddTask.text
-            Log.i(LOG_TAG,"${newTask.length}")
+           var newTask =  txtAddTask.text
             if(newTask.isEmpty()) {
-                Snackbar.make(it, "empty", Snackbar.LENGTH_LONG).show()
+                Snackbar.make(it, "Please add some Task", Snackbar.LENGTH_LONG).show()
+            }else{
+                val dataRepo = TaskRepositry(application)
+                dataRepo.addTask(newTask)
             }
-                finish()
+            finish()
+            val intent = Intent(this,MainActivity::class.java)
+            startActivity(intent)
         }
     }
 }

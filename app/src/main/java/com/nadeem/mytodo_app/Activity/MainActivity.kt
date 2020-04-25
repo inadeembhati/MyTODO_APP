@@ -44,8 +44,7 @@ class MainActivity : AppCompatActivity() {
             Snackbar.make(view, "Add Task ${tabs.selectedTabPosition}", Snackbar.LENGTH_LONG).show()
         val intent = Intent(this, AddTask::class.java)
                 startActivity(intent)
-
-        }
+            }
         }
 
     }
