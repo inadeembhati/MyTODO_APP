@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MyTODO_APP</string>
+    <string name="app_name">My Task Tracker</string>
     <string name="tab_text_TODO">TODO</string>
     <string name="tab_text_Done">Done</string>
     <string name="tab_text_All">All</string>
