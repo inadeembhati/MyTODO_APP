@@ -24,9 +24,6 @@ class MainActivity : AppCompatActivity() {
         //   var mviewModel= MainViewModel(application)
         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
         viewModel.taskData.observe(this, Observer {
-            for (task in it) {
-             //   Log.i(LOG_TAG, "${task.taskName}")
-            }
         })
 
 
@@ -35,8 +32,6 @@ class MainActivity : AppCompatActivity() {
         viewPager.adapter = sectionsPagerAdapter
         val tabs: TabLayout = findViewById(R.id.tabs)
         tabs.setupWithViewPager(viewPager)
-
-
         val addTODO: FloatingActionButton = findViewById(R.id.addTDOD)
         if(tabs.selectedTabPosition == 0){
             addTODO.show()

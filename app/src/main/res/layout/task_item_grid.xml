@@ -4,19 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <!--
+
     <CheckBox
         android:id="@+id/checkBox"
         style="@style/checkBoxTheme"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:padding="20dp"
         android:background="@drawable/check_box_shape"
         android:text="CheckBox"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />-->
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <CheckedTextView
+ <!--   <CheckedTextView
         android:id="@+id/checkedTextView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -30,14 +31,14 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="Deprecated" />
+        tools:ignore="Deprecated" />-->
 
-    <TextView
+  <!--  <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkedTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/checkedTextView" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

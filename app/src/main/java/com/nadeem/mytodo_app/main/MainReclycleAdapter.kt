@@ -3,6 +3,7 @@ package com.nadeem.mytodo_app.main
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
+import android.provider.ContactsContract
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -17,12 +18,10 @@ import com.nadeem.mytodo_app.utilities.DataTask
 import com.nadeem.mytodo_app.utilities.LOG_TAG
 import kotlinx.android.synthetic.main.task_item_grid.view.*
 
-class MainReclycleAdapter(val context: Context, val dataTasks: List<DataTask>) :
+class MainReclycleAdapter(val context: Context, var dataTasks: List<DataTask>,val tabName:String ) :
     RecyclerView.Adapter<MainReclycleAdapter.ViewHolder>() {
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-  //  val taskCheckBox = itemView.findViewById<CheckBox>(R.id.checkBox)
-
-     val textChackedView : CheckedTextView = itemView.findViewById(R.id.checkedTextView)
+     val taskCheckBox = itemView.findViewById<CheckBox>(R.id.checkBox)
     }
 
     override fun getItemCount() = dataTasks.size
@@ -30,40 +29,32 @@ class MainReclycleAdapter(val context: Context, val dataTasks: List<DataTask>) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val view =  inflater.inflate(R.layout.task_item_grid,parent,false)
+        Log.i(LOG_TAG,  "OnCreateViewHolder $viewType")
     return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        Log.i(LOG_TAG,  "OnBindViewHolder $position")
         val dataTask  = dataTasks[position]
-        /*with(holder){
-                taskCheckBox?.let{
-                    it.text = dataTask.taskName
-                    it.isChecked = dataTask.status == "Done"
-
-                it.setOnClickListener{checkBoxChanged(text = dataTask.taskName)}
+        with(holder) {
+            taskCheckBox?.let {
+                it.text = dataTask.taskName
+                it.isChecked = dataTask.status == "done"
+                it.isClickable = tabName == "todo"
+            if(tabName == "todo"){
+                it.setOnClickListener{
+                    Log.i(LOG_TAG,"$tabName")
                 }
-        }*/
-        with(holder){
+            }
+            }
+        }
+       /* with(holder){
             textChackedView?.let{
                 it.text = dataTask.taskName
                 it.isChecked = dataTask.status == "Done"
 
             }
-        }
-    }
-
-    fun hideKeyboard(activity: Activity) {
-        val view = activity.currentFocus
-        val methodManager = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        assert(view != null)
-        methodManager.hideSoftInputFromWindow(view!!.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
-    }
-
-    private fun showKeyboard(activity: Activity) {
-        val view = activity.currentFocus
-        val methodManager = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        assert(view != null)
-        methodManager.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT)
+        }*/
     }
 
 }
