@@ -47,9 +47,9 @@ class MainReclycleAdapter(
                 it.isChecked = dataTask.status == "done"
                 it.isClickable = tabName == "todo"
 
-            if(tabName == "todo"){
-              it.setOnClickListener { updateTask(dataTask,c) }
-            }
+            if(tabName != "all"){
+              it.setOnClickListener { updateTask(dataTask,c,tabName) }
+                }
             }
         }
        /* with(holder){
@@ -61,14 +61,18 @@ class MainReclycleAdapter(
         }*/
     }
 
-    private fun updateTask(dataTask: DataTask,context: Context) {
+    private fun updateTask(dataTask: DataTask,context: Context ,tabName: String) {
         val datarepo = TaskRepositry(c.applicationContext as Application)
        //this.dataTasks = arrayListOf<DataTask>()
-        datarepo.updateTask(dataTask)
+        var value  = "todo"
+        if(tabName =="todo")
+            value = "done"
+
+        datarepo.updateTask(dataTask,value)
         datarepo.refreshData()
         notifyDataSetChanged()
         var view =this.getItemViewType(R.layout.fragment_todo)
-        var  toast=Toast. makeText(c.applicationContext,"Task Marked as Done and will be Moved to Done tab",Toast.LENGTH_LONG)
+        var  toast=Toast. makeText(c.applicationContext,"Task Marked as $value and will be Moved to corresponding tab",Toast.LENGTH_LONG)
             .show()
 
 

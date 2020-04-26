@@ -80,7 +80,7 @@ class TaskRepositry(val app : Application) {
 
     }
 
-    fun updateTask(task: DataTask) {
+    fun updateTask(task: DataTask ,value :String) {
         val newtaskData: MutableList<DataTask> = arrayListOf()
         val text = FileHelper.getTextFromResource(app)
            if (!text.isNullOrEmpty()) {
@@ -89,7 +89,7 @@ class TaskRepositry(val app : Application) {
             val adapater: JsonAdapter<List<DataTask>> = moshi.adapter(listType)
             val newtaskData = (adapater.fromJson(text) ?: emptyList()).toMutableList()
             val index = newtaskData.indexOf(task)
-            task.status = "done"
+            task.status = value
             newtaskData[index] = task;
             saveDataToCache(newtaskData)
             taskData.value  = newtaskData
