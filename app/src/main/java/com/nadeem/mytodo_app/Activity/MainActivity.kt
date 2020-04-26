@@ -2,22 +2,17 @@
 
 package com.nadeem.mytodo_app.Activity
 
-import android.app.Application
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.tabs.TabLayout
-import androidx.viewpager.widget.ViewPager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.viewpager.widget.ViewPager
 import com.example.androiddata.ui.main.MainViewModel
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.tabs.TabLayout
 import com.nadeem.mytodo_app.R
 import com.nadeem.mytodo_app.main.SectionsPagerAdapter
-import java.security.AccessControlContext
-import java.security.AccessController.getContext
 
 class MainActivity : AppCompatActivity() {
 
@@ -42,7 +37,6 @@ class MainActivity : AppCompatActivity() {
         if(tabs.selectedTabPosition == 0){
             addTODO.show()
             addTODO.setOnClickListener { view ->
-            Snackbar.make(view, "Add Task ${tabs.selectedTabPosition}", Snackbar.LENGTH_LONG).show()
         val intent = Intent(this, AddTask::class.java)
                 startActivity(intent)
             }

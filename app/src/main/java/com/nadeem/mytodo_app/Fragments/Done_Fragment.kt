@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.nadeem.mytodo_app.Fragments
 
 import android.os.Bundle
@@ -22,7 +24,13 @@ class Done_Fragment : Fragment() {
         super.onCreate(savedInstanceState)
 
     }
-
+    override fun setUserVisibleHint(isVisibleToUser: Boolean) {
+        super.setUserVisibleHint(isVisibleToUser)
+        if(isVisibleToUser){
+           // viewModel.refreshData()
+            fragmentManager!!.beginTransaction().detach(this).attach(this).commit()
+        }
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -30,6 +38,7 @@ class Done_Fragment : Fragment() {
         val view =  inflater.inflate(R.layout.fragment_todo, container, false)
         reclyclerView = view.findViewById(R.id.reclyclerView)
         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
+        viewModel.refreshData()
         val newDataTask : MutableList<DataTask> = arrayListOf()
         if(viewModel.taskData.value != null) {
        for(task in viewModel.taskData.value!!){
@@ -40,9 +49,7 @@ class Done_Fragment : Fragment() {
         viewModel.taskData.value = newDataTask
         }
         viewModel.taskData.observe(this, Observer {
-
-
-            val adapter = MainReclycleAdapter(requireContext(), it,"done")
+        val adapter = MainReclycleAdapter(requireContext(), it,"done")
             reclyclerView.adapter = adapter
         })
 

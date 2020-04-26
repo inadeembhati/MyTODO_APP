@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="60dp"
+    >
 
     <CheckBox
         android:id="@+id/checkBox"
@@ -12,7 +13,7 @@
         android:layout_height="0dp"
         android:padding="20dp"
         android:background="@drawable/check_box_shape"
-
+        android:textAlignment="viewStart"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

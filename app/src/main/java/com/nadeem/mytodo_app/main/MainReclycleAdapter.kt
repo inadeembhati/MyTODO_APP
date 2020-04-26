@@ -8,9 +8,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 import com.nadeem.mytodo_app.Activity.MainActivity
 import com.nadeem.mytodo_app.Fragments.TodoFragment
 import com.nadeem.mytodo_app.R
@@ -44,6 +46,7 @@ class MainReclycleAdapter(
                 it.text = dataTask.taskName
                 it.isChecked = dataTask.status == "done"
                 it.isClickable = tabName == "todo"
+
             if(tabName == "todo"){
               it.setOnClickListener { updateTask(dataTask,c) }
             }
@@ -60,9 +63,16 @@ class MainReclycleAdapter(
 
     private fun updateTask(dataTask: DataTask,context: Context) {
         val datarepo = TaskRepositry(c.applicationContext as Application)
+       //this.dataTasks = arrayListOf<DataTask>()
         datarepo.updateTask(dataTask)
+        datarepo.refreshData()
         notifyDataSetChanged()
+        var view =this.getItemViewType(R.layout.fragment_todo)
+        var  toast=Toast. makeText(c.applicationContext,"Task Marked as Done and will be Moved to Done tab",Toast.LENGTH_LONG)
+            .show()
+
 
     }
+
 
 }
