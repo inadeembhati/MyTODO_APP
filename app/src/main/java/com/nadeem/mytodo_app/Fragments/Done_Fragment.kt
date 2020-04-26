@@ -31,12 +31,14 @@ class Done_Fragment : Fragment() {
         reclyclerView = view.findViewById(R.id.reclyclerView)
         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
         val newDataTask : MutableList<DataTask> = arrayListOf()
-        for(task in viewModel.taskData.value!!){
+        if(viewModel.taskData.value != null) {
+       for(task in viewModel.taskData.value!!){
             if(task.status == "done"){
                 newDataTask.add(task)
             }
         }
         viewModel.taskData.value = newDataTask
+        }
         viewModel.taskData.observe(this, Observer {
 
 

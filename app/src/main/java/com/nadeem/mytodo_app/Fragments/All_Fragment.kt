@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.androiddata.ui.main.MainViewModel
 import com.nadeem.mytodo_app.R
 import com.nadeem.mytodo_app.main.MainReclycleAdapter
-import com.nadeem.mytodo_app.utilities.DataTask
 
 
 class All_Fragment : Fragment() {

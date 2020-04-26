@@ -1,25 +1,29 @@
 package com.nadeem.mytodo_app.main
 
-import android.annotation.SuppressLint
-import android.app.Activity
+import android.app.Application
 import android.content.Context
-import android.provider.ContactsContract
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
 import android.widget.CheckBox
-import android.widget.CheckedTextView
-import androidx.fragment.app.Fragment
+import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.nadeem.mytodo_app.Activity.MainActivity
+import com.nadeem.mytodo_app.Fragments.TodoFragment
 import com.nadeem.mytodo_app.R
+import com.nadeem.mytodo_app.data.TaskRepositry
 import com.nadeem.mytodo_app.utilities.DataTask
 import com.nadeem.mytodo_app.utilities.LOG_TAG
-import kotlinx.android.synthetic.main.task_item_grid.view.*
+import java.security.AccessController.getContext
 
-class MainReclycleAdapter(val context: Context, var dataTasks: List<DataTask>,val tabName:String ) :
+class MainReclycleAdapter(
+    val context: Context, var dataTasks: List<DataTask>,
+    val tabName:String) :
     RecyclerView.Adapter<MainReclycleAdapter.ViewHolder>() {
+    private  lateinit var  c:Context
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
      val taskCheckBox = itemView.findViewById<CheckBox>(R.id.checkBox)
     }
@@ -28,13 +32,12 @@ class MainReclycleAdapter(val context: Context, var dataTasks: List<DataTask>,va
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
+        c = parent.context
         val view =  inflater.inflate(R.layout.task_item_grid,parent,false)
-        Log.i(LOG_TAG,  "OnCreateViewHolder $viewType")
     return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        Log.i(LOG_TAG,  "OnBindViewHolder $position")
         val dataTask  = dataTasks[position]
         with(holder) {
             taskCheckBox?.let {
@@ -42,9 +45,7 @@ class MainReclycleAdapter(val context: Context, var dataTasks: List<DataTask>,va
                 it.isChecked = dataTask.status == "done"
                 it.isClickable = tabName == "todo"
             if(tabName == "todo"){
-                it.setOnClickListener{
-                    Log.i(LOG_TAG,"$tabName")
-                }
+              it.setOnClickListener { updateTask(dataTask,c) }
             }
             }
         }
@@ -55,6 +56,13 @@ class MainReclycleAdapter(val context: Context, var dataTasks: List<DataTask>,va
 
             }
         }*/
+    }
+
+    private fun updateTask(dataTask: DataTask,context: Context) {
+        val datarepo = TaskRepositry(c.applicationContext as Application)
+        datarepo.updateTask(dataTask)
+        notifyDataSetChanged()
+
     }
 
 }
